@@ -84,24 +84,7 @@
                 </button>
             </form>
 
-            <!-- Demo Accounts -->
-            <!-- <div class="mt-8 pt-8 border-t border-gray-200">
-                <p class="text-gray-600 text-sm font-semibold mb-4">📝 Demo Accounts:</p>
-                <div class="space-y-2 text-xs text-gray-600">
-                    <div class="bg-gray-50 p-3 rounded">
-                        <p><strong>Admin:</strong></p>
-                        <p>Email: admin@siapkak.local</p>
-                        <p>Password: password123</p>
-                    </div>
-                    <div class="bg-gray-50 p-3 rounded">
-                        <p><strong>User:</strong></p>
-                        <p>Email: john@siapkak.local</p>
-                        <p>Password: password123</p>
-                    </div>
-                </div> -->
-            </div>
-
-            <!-- Register Link -->
+             <!-- Register Link  -->
             <div class="mt-6 text-center">
                 <p class="text-gray-600 text-sm">
                     Belum punya akun? 

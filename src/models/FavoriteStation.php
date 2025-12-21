@@ -27,14 +27,14 @@ class FavoriteStation
                         ufs.id as favorite_id,
                         ufs.nickname,
                         ufs.created_at as favorited_at,
-                        s.id as station_id,
-                        s.name as station_name,
-                        s.location,
-                        s.latitude,
-                        s.longitude,
-                        s.external_id
+                        ms.id as station_id,
+                        ms.name as station_name,
+                        ms.location,
+                        ms.latitude,
+                        ms.longitude,
+                        ms.external_id
                     FROM user_favorite_stations ufs
-                    INNER JOIN stations s ON ufs.station_id = s.id
+                    INNER JOIN monitoring_stations ms ON ufs.station_id = ms.id
                     WHERE ufs.user_id = :user_id
                     ORDER BY ufs.created_at DESC";
             
@@ -42,7 +42,7 @@ class FavoriteStation
             $stmt->execute(['user_id' => $userId]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            // If stations table doesn't exist, return simple list
+            // If monitoring_stations table doesn't exist, return simple list
             if ($e->getCode() === '42S02') {
                 return $this->getUserFavoritesSimple($userId);
             }
@@ -84,11 +84,11 @@ class FavoriteStation
         $sql = "SELECT 
                     ufs.id as favorite_id,
                     ufs.nickname,
-                    s.id as station_id,
-                    s.name as station_name,
-                    s.location,
-                    s.latitude,
-                    s.longitude,
+                    ms.id as station_id,
+                    ms.name as station_name,
+                    ms.location,
+                    ms.latitude,
+                    ms.longitude,
                     r.aqi_index as aqi,
                     r.pm25,
                     r.pm10,
@@ -96,7 +96,7 @@ class FavoriteStation
                     NULL as humidity,
                     r.measured_at as recorded_at
                 FROM user_favorite_stations ufs
-                INNER JOIN stations s ON ufs.station_id = s.id
+                INNER JOIN monitoring_stations ms ON ufs.station_id = ms.id
                 LEFT JOIN (
                     SELECT station_id, aqi_index, pm25, pm10, measured_at
                     FROM air_quality_readings
@@ -105,7 +105,7 @@ class FavoriteStation
                         FROM air_quality_readings
                         GROUP BY station_id
                     )
-                ) r ON s.id = r.station_id
+                ) r ON ms.id = r.station_id
                 WHERE ufs.user_id = :user_id
                 ORDER BY ufs.created_at DESC
                 LIMIT :limit";
@@ -270,13 +270,13 @@ class FavoriteStation
     public function getMostPopularStations(int $limit = 10): array
     {
         $sql = "SELECT 
-                    s.id as station_id,
-                    s.name as station_name,
-                    s.location,
+                    ms.id as station_id,
+                    ms.name as station_name,
+                    ms.location,
                     COUNT(ufs.id) as favorite_count
-                FROM stations s
-                INNER JOIN user_favorite_stations ufs ON s.id = ufs.station_id
-                GROUP BY s.id, s.name, s.location
+                FROM monitoring_stations ms
+                INNER JOIN user_favorite_stations ufs ON ms.id = ufs.station_id
+                GROUP BY ms.id, ms.name, ms.location
                 ORDER BY favorite_count DESC
                 LIMIT :limit";
         
