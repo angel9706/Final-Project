@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAPKAK Dashboard Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3em;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+
+        /* Desktop Mockup */
+        .desktop-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .section-title {
+            color: white;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .desktop-mockup {
+            background: linear-gradient(to bottom, #2d2d2d 30px, #1a1a1a 30px);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 
+                0 50px 100px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.05);
+            margin: 0 auto;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .desktop-titlebar {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            gap: 8px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .titlebar-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .titlebar-button:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-close { background: #ff5f56; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+        .btn-minimize { background: #ffbd2e; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+        .btn-maximize { background: #27c93f; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+
+        .desktop-screen {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 10px;
+            box-shadow: 
+                inset 0 0 0 1px rgba(0,0,0,0.05),
+                0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .desktop-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .device-info {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 25px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .device-info::before {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .device-info::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Mobile Mockup */
+        .mobile-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-mockup-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .mobile-mockup {
+            background: #1a1a1a;
+            border-radius: 45px;
+            padding: 12px;
+            box-shadow: 
+                0 50px 100px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.05),
+                inset 0 0 0 2px #2d2d2d;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .mobile-notch {
+            position: relative;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notch-cutout {
+            background: #000;
+            width: 180px;
+            height: 32px;
+            border-radius: 0 0 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px;
+        }
+
+        .notch-speaker {
+            background: #1a1a1a;
+            width: 70px;
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        .notch-camera {
+            width: 12px;
+            height: 12px;
+            background: #0d0d0d;
+            border-radius: 50%;
+            border: 2px solid #1a1a1a;
+        }
+
+        .mobile-screen {
+            background: white;
+            border-radius: 33px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 0 1px rgba(0,0,0,0.05),
+                0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .mobile-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mobile-indicator {
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .indicator-bar {
+            background: #2d2d2d;
+            width: 140px;
+            height: 5px;
+            border-radius: 3px;
+        }
+
+        /* Feature badges */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header .subtitle {
+                font-size: 1em;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .desktop-section,
+            .mobile-section {
+                padding: 30px 20px;
+            }
+
+            .desktop-mockup {
+                padding: 15px;
+            }
+
+            .mobile-mockup {
+                max-width: 100%;
+            }
+
+            .features {
+                gap: 10px;
+            }
+
+            .feature-badge {
+                font-size: 0.75em;
+                padding: 6px 15px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .desktop-section,
+        .mobile-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .mobile-section {
+            animation-delay: 0.2s;
+        }
+
+        /* Instructions */
+        .instructions {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .instructions h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instructions ol {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 2;
+            padding-left: 30px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 SIAPKAK Dashboard</h1>
+            <p class="subtitle">Professional Device Mockups - Desktop & Mobile Experience</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Desktop Mockup -->
+            <div class="desktop-section">
+                <h2 class="section-title">
+                    <span>🖥️</span>
+                    <span>Desktop View</span>
+                </h2>
+                
+                <div class="desktop-mockup">
+                    <div class="desktop-titlebar">
+                        <div class="titlebar-button btn-close"></div>
+                        <div class="titlebar-button btn-minimize"></div>
+                        <div class="titlebar-button btn-maximize"></div>
+                    </div>
+                    <div class="desktop-screen">
+                        <img src="desktop.jpg" alt="SIAPKAK Desktop Dashboard">
+                    </div>
+                </div>
+                
+                <div class="device-info">
+                    MacBook Pro 16" - 1920 × 1080 Resolution
+                </div>
+
+                <div class="features">
+                    <div class="feature-badge">
+                        <span>📊</span> Real-time Analytics
+                    </div>
+                    <div class="feature-badge">
+                        <span>🗺️</span> Interactive Maps
+                    </div>
+                    <div class="feature-badge">
+                        <span>📈</span> Data Visualization
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Mockup -->
+            <div class="mobile-section">
+                <h2 class="section-title">
+                    <span>📱</span>
+                    <span>Mobile View</span>
+                </h2>
+                
+                <div class="mobile-mockup-container">
+                    <div class="mobile-mockup">
+                        <div class="mobile-notch">
+                            <div class="notch-cutout">
+                                <div class="notch-speaker"></div>
+                                <div class="notch-camera"></div>
+                            </div>
+                        </div>
+                        <div class="mobile-screen">
+                            <img src="mobile.jpg" alt="SIAPKAK Mobile Dashboard">
+                        </div>
+                        <div class="mobile-indicator">
+                            <div class="indicator-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="device-info">
+                    iPhone 14 Pro - 390 × 844 Resolution
+                </div>
+
+                <div class="features">
+                    <div class="feature-badge">
+                        <span>🎯</span> Touch Optimized
+                    </div>
+                    <div class="feature-badge">
+                        <span>⚡</span> Fast Loading
+                    </div>
+                    <div class="feature-badge">
+                        <span>📲</span> Responsive Design
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>📝 Cara Menggunakan Mockup</h3>
+            <ol>
+                <li><strong>Save kedua gambar screenshot</strong> dengan nama <code>dashboard-desktop.png</code> dan <code>dashboard-mobile.png</code></li>
+                <li><strong>Letakkan file gambar</strong> di folder yang sama dengan file HTML ini</li>
+                <li><strong>Buka file HTML</strong> di browser (Chrome/Firefox recommended)</li>
+                <li><strong>Screenshot hasil mockup</strong> dengan cara:
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Windows: <kbd>Win + Shift + S</kbd></li>
+                        <li>Mac: <kbd>Cmd + Shift + 4</kbd></li>
+                        <li>Atau gunakan browser extension seperti "Full Page Screen Capture"</li>
+                    </ul>
+                </li>
+                <li><strong>Atau export langsung</strong> dengan klik kanan → "Save as PDF" di browser</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Smooth reveal animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add hover effect to titlebar buttons
+        document.querySelectorAll('.titlebar-button').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

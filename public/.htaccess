@@ -1,0 +1,55 @@
+# Public folder .htaccess
+
+# Disable directory listing
+Options -Indexes
+
+# Set default index files
+DirectoryIndex index.php index.html index.htm
+
+# Enable mod_rewrite untuk routes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /siapkak/
+    
+    # Pass Authorization header to PHP (PENTING untuk JWT)
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+    
+    # Route untuk halaman PHP tanpa extension
+    # /siapkak/dashboard -> public/dashboard.php
+    RewriteRule ^dashboard$ public/dashboard.php [L]
+    
+    # /siapkak/analytics -> public/analytics.php
+    RewriteRule ^analytics$ public/analytics.php [L]
+    
+    # /siapkak/stations -> public/stations.php
+    RewriteRule ^stations$ public/stations.php [L]
+    
+    # /siapkak/readings -> public/readings.php
+    RewriteRule ^readings$ public/readings.php [L]
+    
+    # /siapkak/reports -> public/reports.php
+    RewriteRule ^reports$ public/reports.php [L]
+    
+    # /siapkak/users -> public/users.php
+    RewriteRule ^users$ public/users.php [L]
+    
+    # /siapkak/menus -> public/menus.php
+    RewriteRule ^menus$ public/menus.php [L]
+    
+    # /siapkak/settings -> public/settings.php
+    RewriteRule ^settings$ public/settings.php [L]
+    
+    # /siapkak/login -> public/login.php
+    RewriteRule ^login$ public/login.php [L]
+    
+    # Jangan rewrite file dan folder yang ada
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Rewrite semua request API ke index.php
+    RewriteRule ^api/(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Set environment variable for Authorization header (fallback)
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
