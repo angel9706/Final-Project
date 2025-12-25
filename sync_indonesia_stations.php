@@ -25,6 +25,47 @@ if (empty($apiKey)) {
 // Database connection
 $db = Database::getInstance()->getConnection();
 
+// Check dan perbaiki schema jika ada kolom yang hilang
+try {
+    // Cek kolom external_id
+    $checkStmt = $db->prepare("SHOW COLUMNS FROM monitoring_stations LIKE 'external_id'");
+    $checkStmt->execute();
+    $hasExternalId = $checkStmt->fetch();
+    
+    if (!$hasExternalId) {
+        echo "📝 Menambahkan kolom yang hilang...\n";
+        try {
+            $db->exec("ALTER TABLE monitoring_stations ADD COLUMN external_id VARCHAR(100) NULL UNIQUE AFTER description");
+        } catch (Exception $e) {
+            echo "   ⚠️  external_id: " . $e->getMessage() . "\n";
+        }
+    }
+    
+    $checkStmt = $db->prepare("SHOW COLUMNS FROM monitoring_stations LIKE 'status'");
+    $checkStmt->execute();
+    if (!$checkStmt->fetch()) {
+        try {
+            $db->exec("ALTER TABLE monitoring_stations ADD COLUMN status ENUM('active','inactive','maintenance') DEFAULT 'active' AFTER external_id");
+        } catch (Exception $e) {
+            echo "   ⚠️  status: " . $e->getMessage() . "\n";
+        }
+    }
+    
+    $checkStmt = $db->prepare("SHOW COLUMNS FROM monitoring_stations LIKE 'latest_aqi'");
+    $checkStmt->execute();
+    if (!$checkStmt->fetch()) {
+        try {
+            $db->exec("ALTER TABLE monitoring_stations ADD COLUMN latest_aqi DECIMAL(10,2) NULL");
+        } catch (Exception $e) {
+            echo "   ⚠️  latest_aqi: " . $e->getMessage() . "\n";
+        }
+    }
+    
+} catch (Exception $e) {
+    echo "⚠️  Schema check error: " . $e->getMessage() . "\n";
+    echo "⚠️  Melanjutkan dengan schema yang ada...\n\n";
+}
+
 // Daftar kota-kota di Indonesia untuk discovery
 $indonesiaCities = [
     // Pulau Jawa

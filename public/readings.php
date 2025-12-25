@@ -150,62 +150,6 @@ $breadcrumbs = [
             <!-- Dashboard Overview Section -->
             <section id="overview" class="content-section hidden">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Dashboard Overview</h2>
-                    <button id="syncAqicnBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition w-full sm:w-auto flex items-center justify-center gap-2">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Sync Data(AQICN)</span>
-                    </button>
-                </div>
-
-                <!-- Statistics Cards -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
-                    <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md transition">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-broadcast-tower text-blue-600 text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="ml-3 sm:ml-4">
-                                <p class="text-gray-500 text-xs sm:text-sm">Total Stasiun</p>
-                                <p id="dashTotalStations" class="text-xl sm:text-2xl font-bold text-gray-900">0</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md transition">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-leaf text-green-600 text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="ml-3 sm:ml-4">
-                                <p class="text-gray-500 text-xs sm:text-sm">Udara Baik</p>
-                                <p id="dashGoodAir" class="text-xl sm:text-2xl font-bold text-green-600">0</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md transition">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-exclamation text-yellow-600 text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="ml-3 sm:ml-4">
-                                <p class="text-gray-500 text-xs sm:text-sm">Udara Sedang</p>
-                                <p id="dashModerateAir" class="text-xl sm:text-2xl font-bold text-yellow-600">0</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md transition">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-exclamation-triangle text-red-600 text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="ml-3 sm:ml-4">
-                                <p class="text-gray-500 text-xs sm:text-sm">Tidak Sehat</p>
-                                <p id="dashUnhealthyAir" class="text-xl sm:text-2xl font-bold text-red-600">0</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -221,19 +165,6 @@ $breadcrumbs = [
                     </button>
                 </div>
 
-                <!-- Filter & Search -->
-                <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="md:col-span-2">
-                            <input type="text" id="searchStationInput" placeholder="Cari stasiun..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                        </div>
-                        <div>
-                            <button id="btnRefreshStations" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                                <i class="fas fa-sync-alt mr-2"></i>Refresh Data
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Stations Table -->
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -268,11 +199,6 @@ $breadcrumbs = [
                         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Data Readings</h2>
                         <p class="text-gray-500 mt-1">Kelola data pembacaan kualitas udara</p>
                     </div>
-                    <!-- <?php if (PermissionHelper::isAdmin()): ?>
-                    <button id="btnAddReading" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
-                        <i class="fas fa-plus mr-2"></i>Tambah Reading
-                    </button>
-                    <?php endif; ?> -->
                 </div>
 
                 <!-- Filter & Search -->
@@ -322,214 +248,7 @@ $breadcrumbs = [
                     </div>
                 </div>
             </section>
-
-            <!-- Analytics Section -->
-            <section id="analytics" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Analytics & Insights</h2>
-                
-                <!-- Time Series Chart (Database + API) -->
-                <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900">
-                            <i class="fas fa-chart-line mr-2 text-blue-600"></i>
-                            Time Series - AQI Trend (7 Hari Terakhir)
-                        </h3>
-                        <div class="flex gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                                <i class="fas fa-database mr-1"></i>Database
-                            </span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">
-                                <i class="fas fa-cloud mr-1"></i>AQICN API
-                            </span>
-                        </div>
-                    </div>
-                    <div class="h-80">
-                        <canvas id="timeSeriesChart"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        Grafik menampilkan data dari database lokal dan real-time dari AQICN API
-                    </p>
-                </div>
-
-                <!-- Bar & Pie Charts Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                    <!-- Pollutants Bar Chart -->
-                    <div class="bg-white rounded-xl shadow-sm p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                            <i class="fas fa-chart-bar mr-2 text-purple-600"></i>
-                            Rata-rata Polutan (µg/m³)
-                        </h3>
-                        <div class="h-72">
-                            <canvas id="pollutantsBarChart"></canvas>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-2">Data dari database 30 hari terakhir</p>
-                    </div>
-
-                    <!-- AQI Status Pie Chart -->
-                    <div class="bg-white rounded-xl shadow-sm p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                            <i class="fas fa-chart-pie mr-2 text-orange-600"></i>
-                            Distribusi Status AQI
-                        </h3>
-                        <div class="h-72">
-                            <canvas id="aqiStatusPieChart"></canvas>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-2">Persentase kategori kualitas udara</p>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900">
-                            <i class="fas fa-map-marked-alt mr-2 text-red-600"></i>
-                            Peta Kualitas Udara & Heatmap
-                        </h3>
-                        <div class="flex gap-2">
-                            <button id="toggleHeatmapBtn" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm">
-                                <i class="fas fa-fire mr-2"></i>Toggle Heatmap
-                            </button>
-                            <button id="refreshMapBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
-                                <i class="fas fa-sync-alt mr-2"></i>Refresh Data
-                            </button>
-                        </div>
-                    </div>
-                    <div id="airQualityMap" class="h-96 rounded-lg border-2 border-gray-200"></div>
-                    
-                    <!-- Heatmap Legend -->
-                    <div class="mt-4">
-                        <h4 class="text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-fire mr-2 text-orange-500"></i>Heatmap Intensity Legend
-                        </h4>
-                        <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #00ff00, #90ff90);"></div>
-                                <span class="text-xs font-medium text-gray-700">Baik</span>
-                                <span class="text-xs text-gray-500">0-50</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #ffff00, #ffff90);"></div>
-                                <span class="text-xs font-medium text-gray-700">Sedang</span>
-                                <span class="text-xs text-gray-500">51-100</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #ff9900, #ffbb66);"></div>
-                                <span class="text-xs font-medium text-gray-700">Sensitif</span>
-                                <span class="text-xs text-gray-500">101-150</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #ff0000, #ff6666);"></div>
-                                <span class="text-xs font-medium text-gray-700">Tidak Sehat</span>
-                                <span class="text-xs text-gray-500">151-200</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #cc00ff, #dd66ff);"></div>
-                                <span class="text-xs font-medium text-gray-700">Sangat Buruk</span>
-                                <span class="text-xs text-gray-500">201-300</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 p-2 rounded">
-                                <div class="w-full h-8 rounded" style="background: linear-gradient(to top, #990000, #cc3333);"></div>
-                                <span class="text-xs font-medium text-gray-700">Berbahaya</span>
-                                <span class="text-xs text-gray-500">300+</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Station Markers Legend -->
-                    <div class="mt-4">
-                        <h4 class="text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>Station Markers Legend
-                        </h4>
-                        <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Baik (0-50)</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-yellow-400 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Sedang (51-100)</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Sensitif (101-150)</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-red-500 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Tidak Sehat (151-200)</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-purple-600 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Sangat Buruk (201-300)</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-4 h-4 bg-red-900 rounded-full border-2 border-white"></div>
-                                <span class="text-xs">Berbahaya (300+)</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Current Data Info -->
-                    <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-database text-blue-600 text-xl mt-1"></i>
-                            <div class="flex-1">
-                                <h4 class="text-sm font-semibold text-gray-800 mb-2">Data AQI Aktif di Peta:</h4>
-                                <div id="currentAqiData" class="text-xs text-gray-700 space-y-1">
-                                    <p><i class="fas fa-spinner fa-spin mr-1"></i> Loading data...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p class="text-xs text-gray-500 mt-4">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        Heatmap menampilkan intensitas kualitas udara. Data dari stasiun monitoring lokal + AQICN API
-                    </p>
-                </div>
-            </section>
-
-            <!-- Alerts Section -->
-            <section id="alerts" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Alerts</h2>
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <div class="text-center py-12">
-                        <i class="fas fa-bell text-6xl text-gray-300 mb-4"></i>
-                        <p class="text-gray-500">No alerts at this time</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reports Sections -->
-            <!-- <section id="reports-daily" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Laporan Harian</h2>
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <p class="text-gray-500">Coming soon...</p>
-                </div>
-            </section>
-
-            <section id="reports-weekly" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Laporan Mingguan</h2>
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <p class="text-gray-500">Coming soon...</p>
-                </div>
-            </section>
-
-            <section id="reports-monthly" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Laporan Bulanan</h2>
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <p class="text-gray-500">Coming soon...</p>
-                </div>
-            </section>
-
-            <!-- Settings Section -->
-            <section id="settings" class="content-section hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Pengaturan</h2>
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <p class="text-gray-500">Settings coming soon...</p>
-                </div>
-            </section> -->
         </main>
-    </div>
 
     <!-- Change Password Modal -->
     <div id="changePasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -636,19 +355,6 @@ $breadcrumbs = [
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Notification Panel -->
-    <div id="notificationPanel" class="hidden fixed top-16 right-2 sm:right-4 w-[calc(100%-16px)] sm:w-96 bg-white rounded-lg shadow-xl z-40 max-h-[70vh] overflow-hidden">
-        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-            <h3 class="text-lg font-semibold">Notifikasi</h3>
-            <button id="closeNotification" class="text-gray-400 hover:text-gray-600 sm:hidden">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div id="notificationsList" class="divide-y max-h-[50vh] overflow-y-auto">
-            <div class="p-4 text-center text-gray-500">Tidak ada notifikasi</div>
         </div>
     </div>
 

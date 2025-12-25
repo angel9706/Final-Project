@@ -163,7 +163,7 @@ $breadcrumbs = [
                     <div id="push-notification-container">
                         <p class="text-gray-600 mb-4">
                             Aktifkan notifikasi push untuk mendapatkan peringatan real-time tentang kualitas udara. 
-                            Jika browser Anda tidak mendukung push notification, sistem akan mengirimkan notifikasi via email.
+                            Sistem akan mengirimkan notifikasi via email.
                         </p>
                         
                         <!-- Browser Support Info -->
@@ -290,19 +290,6 @@ $breadcrumbs = [
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Notification Panel -->
-    <div id="notificationPanel" class="hidden fixed top-16 right-2 sm:right-4 w-[calc(100%-16px)] sm:w-96 bg-white rounded-lg shadow-xl z-40 max-h-[70vh] overflow-hidden">
-        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-            <h3 class="text-lg font-semibold">Notifikasi</h3>
-            <button id="closeNotification" class="text-gray-400 hover:text-gray-600 sm:hidden">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div id="notificationsList" class="divide-y max-h-[50vh] overflow-y-auto">
-            <div class="p-4 text-center text-gray-500">Tidak ada notifikasi</div>
         </div>
     </div>
 

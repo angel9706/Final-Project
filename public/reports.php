@@ -92,11 +92,6 @@ $breadcrumbs = [
                     <h1 class="text-xl sm:text-2xl font-bold text-blue-600">SIAPKAK</h1>
                 </div>
                 <div class="flex items-center space-x-2 sm:space-x-4">
-                    <!-- Notification Bell -->
-                    <!-- <button id="notificationBtn" class="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full">
-                        <i class="fas fa-bell text-lg sm:text-xl"></i>
-                        <span id="notificationBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
-                    </button> -->
                     
                     <!-- User Info (Hidden on mobile) -->
                     <div class="hidden md:flex items-center space-x-3 border-l pl-4">

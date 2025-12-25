@@ -12,7 +12,7 @@ $basePath = '/siapkak';
 $cleanUri = str_replace($basePath, '', $uri);
 $cleanUri = parse_url($cleanUri, PHP_URL_PATH);
 
-// Handle API request
+// Handle API request (deteksi jenis request)
 if (strpos($cleanUri, '/api/') === 0) {
     require_once __DIR__ . '/public/index.php';
     exit();
@@ -27,7 +27,7 @@ if (strpos($cleanUri, '/auth/') === 0) {
     }
 }
 
-// Handle page routes
+// Handle page routes (halamam)
 $routes = [
     '/dashboard' => 'dashboard.php',
     '/reports' => 'reports.php',

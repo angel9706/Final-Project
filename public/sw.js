@@ -1,16 +1,34 @@
 /**
- * Service Worker for SIAPKAK Web Push Notifications
+ * Service Worker for SIAPKAK Web Push Notifications & Caching
  */
 
 const CACHE_NAME = 'siapkak-v1';
 const DASHBOARD_URL = '/siapkak/dashboard';
+const urlsToCache = [
+  '/siapkak/',
+  '/siapkak/index.html',
+  '/siapkak/dashboard',
+  '/siapkak/public/js/main.js',
+  '/siapkak/public/js/push-notifications.js',
+  '/siapkak/public/js/ajax.js',
+  '/siapkak/public/js/charts.js',
+  'https://cdn.tailwindcss.com',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+];
 
 /**
  * Install event - cache essential assets
  */
 self.addEventListener('install', (event) => {
     console.log('[SW] Installing Service Worker');
-    self.skipWaiting();
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('[SW] Caching assets');
+                return cache.addAll(urlsToCache);
+            })
+            .then(() => self.skipWaiting())
+    );
 });
 
 /**
@@ -23,11 +41,49 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 cacheNames
                     .filter((name) => name !== CACHE_NAME)
-                    .map((name) => caches.delete(name))
+                    .map((name) => {
+                        console.log('[SW] Deleting old cache:', name);
+                        return caches.delete(name);
+                    })
             );
-        })
+        }).then(() => self.clients.claim())
     );
-    return self.clients.claim();
+});
+
+/**
+ * Fetch event - Network first strategy with cache fallback
+ */
+self.addEventListener('fetch', (event) => {
+    // Skip non-GET requests
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    event.respondWith(
+        fetch(event.request)
+            .then((response) => {
+                // Validate response
+                if (!response || response.status !== 200 || response.type !== 'basic') {
+                    return response;
+                }
+
+                // Clone response for caching
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME)
+                    .then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+
+                return response;
+            })
+            .catch(() => {
+                // Fallback to cache
+                return caches.match(event.request)
+                    .then((response) => {
+                        return response || new Response('Offline - Page not cached');
+                    });
+            })
+    );
 });
 
 /**
